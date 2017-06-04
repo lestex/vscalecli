@@ -17,13 +17,16 @@ var (
 )
 
 func main() {
-	token, _ = getToken()
+	if os.Getenv("VSCALE") != "" {
+		token = os.Getenv("VSCALE")
+	} else {
+		fmt.Println("VSCALE environment variable is not set")
+	}
 	app := cli.NewApp()
 	app.Name = "vscale"
 	app.Usage = "vscale.io command line interface"
 	app.Version = ver
 	app.Action = func(c *cli.Context) error {
-		cli.ShowAppHelp(c)
 		return nil
 	}
 
@@ -54,8 +57,11 @@ func main() {
 				{
 					Name:  "list",
 					Usage: "Gets the list of scalets",
+					Flags: []cli.Flag{
+						cli.BoolFlag{Name: "forever, forevvarr"},
+					},
 					Action: func(c *cli.Context) error {
-						scaletList()
+						listScalet()
 						return nil
 					},
 				},
@@ -63,7 +69,7 @@ func main() {
 					Name:  "create",
 					Usage: "Creates a new scalet",
 					Action: func(c *cli.Context) error {
-						scaletCreate()
+						createScalet()
 						return nil
 					},
 				},
