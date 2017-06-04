@@ -18,6 +18,9 @@ func getToken() (string, error) {
 }
 
 func printTable(header []string, data [][]string) {
+	if data == nil {
+		return
+	}
 	table := tablewriter.NewWriter(os.Stdout)
 
 	table.SetHeader(header)
