@@ -70,13 +70,15 @@ func main() {
 						cli.BoolFlag{Name: "do_start", Usage: "set the do_start"},
 						cli.StringFlag{Name: "location", Value: "msk0", Usage: "set the location"},
 						cli.StringFlag{Name: "key", Value: "test", Usage: "set the SSHKey"},
+						cli.StringFlag{Name: "name", Usage: "set the hostname"},
 					},
 					Action: func(c *cli.Context) error {
-						/*fmt.Println("rplan:", c.String("rplan"))
+						fmt.Println("rplan:", c.String("rplan"))
 						fmt.Println("do_start:", c.String("do_start"))
 						fmt.Println("location:", c.String("location"))
-						fmt.Println("key:", c.String("key"))*/
-						createScalet()
+						fmt.Println("key:", c.String("key"))
+						fmt.Println("name:", c.String("name"))
+						//createScalet()
 						return nil
 					},
 				},
@@ -121,6 +123,15 @@ func main() {
 					},
 					Action: func(c *cli.Context) error {
 						startScalet(c.Int64("id"))
+						return nil
+					},
+				},
+				{
+					Name:    "rplans",
+					Aliases: []string{"p"},
+					Usage:   "Lists list rplans",
+					Action: func(c *cli.Context) error {
+						listRplans()
 						return nil
 					},
 				},
