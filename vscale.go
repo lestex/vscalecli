@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strconv"
 
 	"github.com/urfave/cli"
 )
@@ -66,19 +67,22 @@ func main() {
 					Name:  "create",
 					Usage: "Creates a new scalet",
 					Flags: []cli.Flag{
+						cli.StringFlag{Name: "from", Value: "ubuntu_16.04_64_001_master", Usage: "set the template for a scalet"},
 						cli.StringFlag{Name: "rplan", Value: "small", Usage: "set the rplan"},
-						cli.BoolFlag{Name: "do_start", Usage: "set the do_start"},
+						cli.StringFlag{Name: "do_start", Value: "true", Usage: "set the do_start"},
 						cli.StringFlag{Name: "location", Value: "msk0", Usage: "set the location"},
-						cli.StringFlag{Name: "key", Value: "test", Usage: "set the SSHKey"},
-						cli.StringFlag{Name: "name", Usage: "set the hostname"},
+						cli.StringFlag{Name: "key", Usage: "set the SSHKey"},
+						cli.StringFlag{Name: "name", Value: "", Usage: "set the hostname"},
 					},
 					Action: func(c *cli.Context) error {
-						fmt.Println("rplan:", c.String("rplan"))
-						fmt.Println("do_start:", c.String("do_start"))
-						fmt.Println("location:", c.String("location"))
-						fmt.Println("key:", c.String("key"))
-						fmt.Println("name:", c.String("name"))
-						//createScalet()
+						dostart, _ := strconv.ParseBool(c.String("do_start"))
+						keys := []string{c.String("key")}
+						createScalet(c.String("from"),
+							c.String("rplan"),
+							c.String("name"),
+							c.String("location"),
+							dostart,
+							keys)
 						return nil
 					},
 				},
