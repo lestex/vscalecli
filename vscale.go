@@ -42,7 +42,7 @@ func main() {
 		},
 		{
 			Name:    "key",
-			Aliases: []string{"c"},
+			Aliases: []string{"k"},
 			Usage:   "Lists ssh keys",
 			Action: func(c *cli.Context) error {
 				listKeys()
@@ -57,9 +57,6 @@ func main() {
 				{
 					Name:  "list",
 					Usage: "Gets the list of scalets",
-					Flags: []cli.Flag{
-						cli.BoolFlag{Name: "forever, forevvarr"},
-					},
 					Action: func(c *cli.Context) error {
 						listScalet()
 						return nil
@@ -68,7 +65,17 @@ func main() {
 				{
 					Name:  "create",
 					Usage: "Creates a new scalet",
+					Flags: []cli.Flag{
+						cli.StringFlag{Name: "rplan", Value: "small", Usage: "set the rplan"},
+						cli.BoolFlag{Name: "do_start", Usage: "set the do_start"},
+						cli.StringFlag{Name: "location", Value: "msk0", Usage: "set the location"},
+						cli.StringFlag{Name: "key", Value: "test", Usage: "set the SSHKey"},
+					},
 					Action: func(c *cli.Context) error {
+						/*fmt.Println("rplan:", c.String("rplan"))
+						fmt.Println("do_start:", c.String("do_start"))
+						fmt.Println("location:", c.String("location"))
+						fmt.Println("key:", c.String("key"))*/
 						createScalet()
 						return nil
 					},
@@ -76,40 +83,55 @@ func main() {
 				{
 					Name:  "remove",
 					Usage: "Removes a scalet",
+					Flags: []cli.Flag{
+						cli.Int64Flag{Name: "id", Usage: "the ID of scalet to remove"},
+					},
 					Action: func(c *cli.Context) error {
-						fmt.Println("removed task template: ", c.Args().First())
+						removeScalet(c.Int64("id"))
 						return nil
 					},
 				},
 				{
 					Name:  "get",
-					Usage: "Gets a scalet",
+					Usage: "Gets a scalet info",
+					Flags: []cli.Flag{
+						cli.Int64Flag{Name: "id", Usage: "the ID of scalet to list"},
+					},
 					Action: func(c *cli.Context) error {
-						fmt.Println("removed task template: ", c.Args().First())
+						fmt.Println("scalet get: ", c.Int64("id"))
 						return nil
 					},
 				},
 				{
 					Name:  "restart",
 					Usage: "Restarts a scalet",
+					Flags: []cli.Flag{
+						cli.Int64Flag{Name: "id", Usage: "the ID of scalet to restart"},
+					},
 					Action: func(c *cli.Context) error {
-						fmt.Println("removed task template: ", c.Args().First())
+						restartScalet(c.Int64("id"))
 						return nil
 					},
 				},
 				{
 					Name:  "stop",
 					Usage: "Stops a scalet",
+					Flags: []cli.Flag{
+						cli.StringFlag{Name: "id", Usage: "the ID of scalet to list to stop"},
+					},
 					Action: func(c *cli.Context) error {
-						fmt.Println("removed task template: ", c.Args().First())
+						stopScalet(c.Int64("id"))
 						return nil
 					},
 				},
 				{
 					Name:  "start",
 					Usage: "Stops a scalet",
+					Flags: []cli.Flag{
+						cli.StringFlag{Name: "id", Usage: "the ID of scalet to start"},
+					},
 					Action: func(c *cli.Context) error {
-						fmt.Println("removed task template: ", c.Args().First())
+						startScalet(c.Int64("id"))
 						return nil
 					},
 				},
