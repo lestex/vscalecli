@@ -7,7 +7,7 @@ import (
 )
 
 // (makeFrom, rplan, name, password, location string, doStart bool,keys []int64, wait bool)
-func scaletCreate() *vscale_api_go.Scalet {
+func createScalet() *vscale_api_go.Scalet {
 	client := vscale_api_go.NewClient(token)
 	keys := []int64{166}
 	scalet, _, _ := client.Scalet.CreateWithoutPassword("ubuntu_16.04_64_001_master",
@@ -15,7 +15,7 @@ func scaletCreate() *vscale_api_go.Scalet {
 	return scalet
 }
 
-func scaletList() {
+func listScalet() {
 	client := vscale_api_go.NewClient(token)
 	scalets, _, _ := client.Scalet.List()
 	var data [][]string
@@ -34,7 +34,7 @@ func scaletList() {
 	printTable(header, data)
 }
 
-func scaletRemove(id int64) {
+func removeScalet(id int64) {
 	client := vscale_api_go.NewClient(token)
 	client.Scalet.Remove(id, false)
 }
