@@ -92,17 +92,6 @@ func main() {
 					},
 				},
 				{
-					Name:  "get",
-					Usage: "Gets a scalet info",
-					Flags: []cli.Flag{
-						cli.Int64Flag{Name: "id", Usage: "the ID of scalet to list"},
-					},
-					Action: func(c *cli.Context) error {
-						fmt.Println("scalet get: ", c.Int64("id"))
-						return nil
-					},
-				},
-				{
 					Name:  "restart",
 					Usage: "Restarts a scalet",
 					Flags: []cli.Flag{
