@@ -17,7 +17,7 @@ var (
 )
 
 func main() {
-	token = os.Getenv("VSCALE")
+	token, _ = getToken()
 	app := cli.NewApp()
 	app.Name = "vscale"
 	app.Usage = "vscale.io command line interface"
@@ -63,7 +63,7 @@ func main() {
 					Name:  "create",
 					Usage: "Creates a new scalet",
 					Action: func(c *cli.Context) error {
-						fmt.Println("removed task template: ", c.Args().First())
+						scaletCreate()
 						return nil
 					},
 				},
