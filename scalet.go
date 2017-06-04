@@ -38,3 +38,18 @@ func removeScalet(id int64) {
 	client := vscale_api_go.NewClient(token)
 	client.Scalet.Remove(id, false)
 }
+
+func restartScalet(id int64) {
+	client := vscale_api_go.NewClient(token)
+	client.Scalet.Restart(id, false)
+}
+
+func startScalet(id int64) {
+	client := vscale_api_go.NewClient(token)
+	client.Scalet.Start(id, false)
+}
+
+func stopScalet(id int64) {
+	client := vscale_api_go.NewClient(token)
+	client.Scalet.Stop(id, false)
+}
