@@ -12,7 +12,12 @@ const (
 	ver = "0.1.0"
 )
 
+var (
+	token = ""
+)
+
 func main() {
+	token = os.Getenv("VSCALE")
 	app := cli.NewApp()
 	app.Name = "vscale"
 	app.Usage = "vscale.io command line interface"
