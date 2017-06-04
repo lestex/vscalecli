@@ -12,7 +12,7 @@ VERSION:
 
 COMMANDS:
      account, a  Gets account info
-     key, c      Lists ssh keys
+     key, k      Lists ssh keys
      scalet, s   Manages scalets
      help, h     Shows a list of commands or help for one command
 
