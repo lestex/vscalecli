@@ -7,9 +7,9 @@ import (
 )
 
 // (makeFrom, rplan, name, password, location string, doStart bool,keys []int64, wait bool)
-func createScalet(from, rplan, name, location string, doStart bool, sshkeys []string) *vscale_api_go.Scalet {
+func createScalet(from, rplan, name, location string, doStart bool, sshkeys string) *vscale_api_go.Scalet {
 	client := vscale_api_go.NewClient(token)
-	keys := []int64{166}
+	keys := stringToKeys(sshkeys)
 	scalet, _, _ := client.Scalet.CreateWithoutPassword(from,
 		rplan,
 		name,

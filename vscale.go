@@ -67,22 +67,21 @@ func main() {
 					Name:  "create",
 					Usage: "Creates a new scalet",
 					Flags: []cli.Flag{
+						cli.StringFlag{Name: "name", Value: "", Usage: "set the hostname (required)"},
+						cli.StringFlag{Name: "key", Usage: "set the SSH keys, --key key1[,key2,key3] (required)"},
 						cli.StringFlag{Name: "from", Value: "ubuntu_16.04_64_001_master", Usage: "set the template for a scalet"},
 						cli.StringFlag{Name: "rplan", Value: "small", Usage: "set the rplan"},
 						cli.StringFlag{Name: "do_start", Value: "true", Usage: "set the do_start"},
 						cli.StringFlag{Name: "location", Value: "msk0", Usage: "set the location"},
-						cli.StringFlag{Name: "key", Usage: "set the SSHKey"},
-						cli.StringFlag{Name: "name", Value: "", Usage: "set the hostname"},
 					},
 					Action: func(c *cli.Context) error {
 						dostart, _ := strconv.ParseBool(c.String("do_start"))
-						keys := []string{c.String("key")}
 						createScalet(c.String("from"),
 							c.String("rplan"),
 							c.String("name"),
 							c.String("location"),
 							dostart,
-							keys)
+							c.String("key"))
 						return nil
 					},
 				},
