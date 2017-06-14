@@ -1,0 +1,16 @@
+language: go
+go:
+ - 1.7
+ - tip
+ 
+script:  
+ - "go build -o bin/vscalecli -i ."
+  
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file:
+  - file: bin/vscalecli
+  on:
+    repo: lestex/vscalecli
+    tags: true
