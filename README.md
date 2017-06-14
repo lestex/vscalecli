@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lestex/vscalecli.svg?branch=master)](https://travis-ci.org/lestex/vscalecli)
+
 vscalecli
 
 ```
