@@ -5,6 +5,11 @@ go:
  
 script:  
  - "go build -o bin/vscale -i ."
+
+notifications:
+  email: $EMAIL
+  on_success: always
+  on_failure: always
   
 deploy:
   provider: releases
@@ -14,8 +19,3 @@ deploy:
   on:
     repo: lestex/vscalecli
     tags: true
-
-notifications:
-  email: $EMAIL
-  on_success: always
-  on_failure: always
