@@ -10,7 +10,8 @@ deploy:
   provider: releases
   api_key: $GH_TOKEN
   file:
-  - file: bin/vscalecli
+    - file: bin/vscalecli
+  skip_cleanup: true
   on:
     repo: lestex/vscalecli
     tags: true
