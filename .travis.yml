@@ -16,7 +16,6 @@ deploy:
     tags: true
 
 notifications:
-  email:
-    recipients: $EMAIL
-    on_success: always
-    on_failure: always
+  email: $EMAIL
+  on_success: always
+  on_failure: always
