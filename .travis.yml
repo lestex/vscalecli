@@ -14,3 +14,9 @@ deploy:
   on:
     repo: lestex/vscalecli
     tags: true
+
+notifications:
+  email:
+    recipients: $EMAIL
+    on_success: never
+    on_failure: always
