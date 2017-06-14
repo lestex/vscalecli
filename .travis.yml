@@ -4,12 +4,12 @@ go:
  - tip
  
 script:  
- - "go build -o bin/vscalecli -i ."
+ - "go build -o bin/vscale -i ."
   
 deploy:
   provider: releases
   api_key: $GH_TOKEN
-  file: bin/vscalecli
+  file: bin/vscale
   skip_cleanup: true
   on:
     repo: lestex/vscalecli
