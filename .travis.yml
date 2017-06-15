@@ -8,9 +8,7 @@ script:
  - "go build -o bin/vscale -i ."
 
 notifications:
-  email: $EMAIL
-  on_success: always
-  on_failure: always
+  slack: codecollegeteam:jm4nkmclQSeaqAHTrpkZtDW3
   
 deploy:
   provider: releases
